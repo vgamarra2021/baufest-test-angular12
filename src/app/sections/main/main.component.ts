@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CharacterDto } from 'src/app/model/character/character.dto';
+import { CharacterService } from 'src/app/services/character.service';
 @Component({
   selector: 'app-main',
   template: `
@@ -26,17 +28,24 @@ import { Component, OnInit } from '@angular/core';
         Resultados
       </p>
       <section class="flex flex-row flex-wrap justify-center gap-4 w-full">
-        <app-card></app-card>
-        <app-card></app-card>
-        <app-card></app-card>
-        <app-card></app-card>
+        <app-card
+          *ngFor="let character of characters"
+          [title]="character.name"
+          [image]="character.image"
+          [gender]="character.gender"
+          [location]="character.location.name"
+        ></app-card>
       </section>
     </main>
   `,
   styles: [],
 })
 export class MainComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+  constructor(private service: CharacterService) {}
+  characters: CharacterDto[] = this.service.getCharacters();
+  ngOnInit(): void {
+    this.service.characters$.subscribe((characters) => {
+      this.characters = characters;
+    });
+  }
 }
