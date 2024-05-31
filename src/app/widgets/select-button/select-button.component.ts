@@ -15,7 +15,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styles: [
     `
       .select-button {
-        background-image: url('src/assets/imgs/bg-green.jpg');
+        background-image: url('src/assets/imgs/bg-green.webp');
         background-size: cover;
         filter: grayscale(0%);
       }
