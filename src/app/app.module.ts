@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './sections/header/header.component';
 import { MainComponent } from './sections/main/main.component';
-import { CardComponent } from './widgets/card/card.component';
+import { CharacterCardComponent } from './widgets/character-card/card.component';
 import { SearchBarComponent } from './widgets/search-bar/search-bar.component';
 import { SelectButtonComponent } from './widgets/select-button/select-button.component';
 
@@ -18,7 +18,7 @@ import { SelectButtonComponent } from './widgets/select-button/select-button.com
     HeaderComponent,
     MainComponent,
     SelectButtonComponent,
-    CardComponent,
+    CharacterCardComponent,
   ],
   imports: [
     HttpClientModule,

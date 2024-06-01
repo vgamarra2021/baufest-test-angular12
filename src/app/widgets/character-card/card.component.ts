@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-card',
+  selector: 'app-character-card',
   template: `
     <div
-      class="w-full max-w-xs overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
+      class="w-full max-w-xs overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 cursor-pointer"
     >
       <img
         class="object-cover object-center w-full h-56"
@@ -90,7 +90,7 @@ import { Component, Input } from '@angular/core';
   `,
   styles: [],
 })
-export class CardComponent {
+export class CharacterCardComponent {
   @Input() title: string = '';
   @Input() image: string = '';
   @Input() gender: string = '';

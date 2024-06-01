@@ -28,13 +28,13 @@ import { CharacterService } from 'src/app/services/character.service';
         Resultados
       </p>
       <section class="flex flex-row flex-wrap justify-center gap-4 w-full">
-        <app-card
+        <app-character-card
           *ngFor="let character of characters"
           [title]="character.name"
           [image]="character.image"
           [gender]="character.gender"
           [location]="character.location.name"
-        ></app-card>
+        ></app-character-card>
       </section>
     </main>
   `,
