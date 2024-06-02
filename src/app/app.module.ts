@@ -1,5 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -16,10 +17,11 @@ import { CardFeature } from './widgets/cards/card-feature/card-feature';
 import { CharacterCard } from './widgets/cards/character-card/character-card';
 import { EpisodeCard } from './widgets/cards/episode-card/episode-card';
 import { LocationCard } from './widgets/cards/location-card/location-card';
+import { CustomPaginator } from './widgets/custom-pagination/custom-paginator';
+import { InfoButton } from './widgets/info-button/info-button';
 import { NavButton } from './widgets/nav-button/nav-button';
 import { SearchBar } from './widgets/search-bar/search-bar.component';
-import { CustomPaginator } from './widgets/custom-pagination/custom-paginator';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CompareButton } from './widgets/compare-button/compare-button';
 
 @NgModule({
   declarations: [
@@ -38,13 +40,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LocationCard,
     LocalDatePipe,
     CustomPaginator,
+    InfoButton,
+    CompareButton,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     RouterModule.forRoot(routes),
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
