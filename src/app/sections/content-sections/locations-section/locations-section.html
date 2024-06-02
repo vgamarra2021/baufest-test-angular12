@@ -8,22 +8,20 @@
   <div
     class="flex flex-row flex-wrap justify-center gap-6 w-full max-w-full px-6"
   >
-    <app-character-card
-      *ngFor="let character of characters"
-      [name]="character.name"
-      [image]="character.image"
-      [gender]="character.gender"
-      [location]="character.location.name"
-      [episodes]="character.episode"
-    ></app-character-card>
+    <app-location-card
+      *ngFor="let location of locations"
+      [name]="location.name"
+      [createdDate]="location.created"
+      [dimension]="location.dimension"
+      [type]="location.type"
+      [residentsNumber]="location.residents.length"
+    ></app-location-card>
   </div>
 
-  <ngb-pagination
+  <app-custom-paginator
     [(page)]="page"
     [pageSize]="pageSize"
     [collectionSize]="total"
-    [maxSize]="5"
-    size="lg"
     (pageChange)="onPageChange($event)"
-  ></ngb-pagination>
+  ></app-custom-paginator>
 </section>

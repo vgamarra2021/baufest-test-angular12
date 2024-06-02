@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SelectButtonComponent } from './select-button.component';
+import { CustomPaginator } from './custom-paginator';
 
-describe('SelectButtonComponent', () => {
-  let component: SelectButtonComponent;
-  let fixture: ComponentFixture<SelectButtonComponent>;
+describe('CustomPaginator', () => {
+  let component: CustomPaginator;
+  let fixture: ComponentFixture<CustomPaginator>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SelectButtonComponent ]
+      declarations: [ CustomPaginator ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SelectButtonComponent);
+    fixture = TestBed.createComponent(CustomPaginator);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

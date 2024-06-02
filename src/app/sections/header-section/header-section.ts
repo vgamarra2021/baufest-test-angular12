@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-header-section',
   template: `
     <header class="flex justify-start w-full">
-      <img src="assets/imgs/Logo-Baufest-blanco.png" alt="Baufest Logo" />
+      <img src="assets/imgs/Logo-Baufest-blanco.png" alt="Baufest Logo" class="h-10 md:h-auto" />
     </header>
   `,
   styles: [

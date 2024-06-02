@@ -3,7 +3,13 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-location-card',
   templateUrl: './location-card.html',
-  styles: [],
+  styles: [
+    `
+      :host {
+        min-width: 300px;
+      }
+    `,
+  ],
 })
 export class LocationCard implements OnInit {
   @Input() name: string = '';

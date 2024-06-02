@@ -6,41 +6,45 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { LocalDatePipe } from './pipes/local-date.pipe';
 import { routes } from './routes';
-import { CharactersSection } from './sections/characters-section/characters-section';
-import { EpisodesSection } from './sections/episodes-section/episodes-section';
+import { CharactersSection } from './sections/content-sections/characters-section/characters-section';
+import { EpisodesSection } from './sections/content-sections/episodes-section/episodes-section';
+import { LocationsSection } from './sections/content-sections/locations-section/locations-section';
 import { HeaderSection } from './sections/header-section/header-section';
-import { LocationsSection } from './sections/locations-section/locations-section';
 import { NavSection } from './sections/nav-section/nav-section';
 import { SearchSection } from './sections/search-section/search-section';
-import { CardFeature } from './widgets/card-feature/card-feature';
-import { CharacterCard } from './widgets/character-card/character-card';
-import { EpisodeCard } from './widgets/episode-card/episode-card';
-import { LocationCard } from './widgets/location-card/location-card';
+import { CardFeature } from './widgets/cards/card-feature/card-feature';
+import { CharacterCard } from './widgets/cards/character-card/character-card';
+import { EpisodeCard } from './widgets/cards/episode-card/episode-card';
+import { LocationCard } from './widgets/cards/location-card/location-card';
+import { NavButton } from './widgets/nav-button/nav-button';
 import { SearchBar } from './widgets/search-bar/search-bar.component';
-import { SelectButtonComponent } from './widgets/select-button/select-button.component';
+import { CustomPaginator } from './widgets/custom-pagination/custom-paginator';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchBar,
-    SelectButtonComponent,
-    CharacterCard,
-    CardFeature,
+    NavButton,
     HeaderSection,
     SearchSection,
     NavSection,
     CharactersSection,
     EpisodesSection,
     LocationsSection,
+    CardFeature,
+    CharacterCard,
+    EpisodeCard,
     LocationCard,
     LocalDatePipe,
-    EpisodeCard,
+    CustomPaginator,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     RouterModule.forRoot(routes),
     NgbModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-select-button',
+  selector: 'app-nav-button',
   template: `
     <a
       [routerLink]="value"
@@ -33,7 +33,7 @@ import { Component, Input } from '@angular/core';
     `,
   ],
 })
-export class SelectButtonComponent {
+export class NavButton {
   @Input() title: string = '';
   @Input() value: string = '';
 }

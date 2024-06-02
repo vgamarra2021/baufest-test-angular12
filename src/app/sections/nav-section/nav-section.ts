@@ -4,11 +4,11 @@ import { Component } from '@angular/core';
   selector: 'app-nav-section',
   template: `
     <nav class="flex flex-row gap-4">
-      <app-select-button
+      <app-nav-button
         *ngFor="let option of options"
         [title]="option.title"
         [value]="option.value"
-      ></app-select-button>
+      ></app-nav-button>
     </nav>
   `,
   styles: [],

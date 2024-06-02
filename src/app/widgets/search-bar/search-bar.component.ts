@@ -1,5 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { NavigationEnd, Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  takeUntil
+} from 'rxjs/operators';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -9,9 +17,8 @@ import { FormControl } from '@angular/forms';
     >
       <input
         type="text"
-        name=""
-        id=""
         class="w-full text-2xl focus-visible: outline-none"
+        [formControl]="inputText"
       />
       <svg
         class="icon icon-tabler icons-tabler-outline icon-tabler-search h-8 w-8 text-gray-500"
@@ -31,6 +38,28 @@ import { FormControl } from '@angular/forms';
   `,
   styles: [],
 })
-export class SearchBar {
-  inputText = new FormControl();
+export class SearchBar implements OnInit, OnDestroy {
+  inputText = new FormControl('');
+  private readonly destroy$ = new Subject();
+
+  constructor(private router: Router, private searchService: SearchService) {
+    this.inputText.valueChanges
+      .pipe(debounceTime(300), distinctUntilChanged())
+      .subscribe((searchValue) => {
+        this.searchService.onChangeSearchText(searchValue, this.router.url);
+      });
+  }
+
+  ngOnInit() {
+    this.router.events.pipe(takeUntil(this.destroy$)).subscribe((event) => {
+      if (event instanceof NavigationEnd && this.inputText.value !== '') {
+        this.inputText.setValue('');
+      }
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }

@@ -3,7 +3,13 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-episode-card',
   templateUrl: './episode-card.html',
-  styles: [],
+  styles: [
+    `
+      :host {
+        min-width: 300px;
+      }
+    `,
+  ],
 })
 export class EpisodeCard implements OnInit {
   @Input() name: string = '';
