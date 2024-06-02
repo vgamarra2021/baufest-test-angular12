@@ -1,20 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { CardFeature } from './card-feature';
 
-import { SearchBar } from './search-bar.component';
-
-describe('SearchBar', () => {
-  let component: SearchBar;
-  let fixture: ComponentFixture<SearchBar>;
+describe('CardFeature', () => {
+  let component: CardFeature;
+  let fixture: ComponentFixture<CardFeature>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SearchBar ]
-    })
-    .compileComponents();
+      declarations: [CardFeature],
+    }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SearchBar);
+    fixture = TestBed.createComponent(CardFeature);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

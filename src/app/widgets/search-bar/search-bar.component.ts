@@ -1,10 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-search-bar',
   template: `
-    <div class="flex flex-row items-center w-full bg-white px-6 py-3 rounded-xl gap-2 mx-auto">
-      <input type="text" name="" id="" class="w-full text-2xl focus-visible: outline-none"/>
+    <div
+      class="flex flex-row items-center w-full bg-white px-6 py-3 rounded-xl gap-2"
+    >
+      <input
+        type="text"
+        name=""
+        id=""
+        class="w-full text-2xl focus-visible: outline-none"
+      />
       <svg
         class="icon icon-tabler icons-tabler-outline icon-tabler-search h-8 w-8 text-gray-500"
         xmlns="http://www.w3.org/2000/svg"
@@ -23,8 +31,6 @@ import { Component, OnInit } from '@angular/core';
   `,
   styles: [],
 })
-export class SearchBarComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class SearchBar {
+  inputText = new FormControl();
 }

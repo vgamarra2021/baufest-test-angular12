@@ -19,6 +19,7 @@ export class CharacterService {
     return this.http.get<CharacterResponseDto>(apiConfig.charactersUrl).pipe(
       tap((response) => {
         console.log(`Fetch All Characters!`);
+        console.log(response)
         this.charactersSubject.next(response.results);
       }),
       map((character) => {
