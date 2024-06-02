@@ -15,6 +15,7 @@ export class EpisodesSection implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('init episodes')
   }
 
 }

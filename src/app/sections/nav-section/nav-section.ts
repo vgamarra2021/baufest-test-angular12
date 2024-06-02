@@ -19,5 +19,4 @@ export class NavSection {
     { title: 'Episodios', value: 'episodes' },
     { title: 'Ubicación', value: 'locations' },
   ];
-
 }

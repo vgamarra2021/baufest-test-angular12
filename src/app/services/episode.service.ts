@@ -1,9 +1,19 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class EpisodeService {
+export abstract class baseClientService {
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
+  abstract baseUrl: string;
+  // getItemsByPage(page: number = 1) {
+  //   return this.http
+  //     .get<CharacterResponseDto>(this.baseUrl, { params: { page } })
+  //     .pipe(
+  //       tap((response) => {
+  //         console.log(`Fetch All Characters!`);
+  //         console.log(response);
+  //         this.charactersSubject.next(response.results);
+  //       })
+  //     );
+  // }
 }

@@ -1,17 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { CharacterService } from './services/character.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `
+    <main class="flex flex-col w-full p-6 items-center">
+      <app-header-section class="w-full"></app-header-section>
+      <app-search-section class="w-full"></app-search-section>
+      <router-outlet></router-outlet>
+    </main>
+  `,
   styleUrls: [],
   providers: [],
 })
-export class AppComponent implements OnInit {
-  constructor(private service: CharacterService) {}
-
-  ngOnInit(): void {
-    this.service.fetchCharacters().subscribe();
-  }
-  title = 'examenAngular';
-}
+export class AppComponent {}

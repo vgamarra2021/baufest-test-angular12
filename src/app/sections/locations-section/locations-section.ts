@@ -15,6 +15,7 @@ export class LocationsSection implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('init locations')
   }
 
 }

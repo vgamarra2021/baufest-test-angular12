@@ -1,14 +1,18 @@
 import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs/operators';
+import { CharacterResponseDto } from 'src/app/model/character/character-response.dto';
 import { CharacterDto } from 'src/app/model/character/character.dto';
 import { CharacterService } from 'src/app/services/character.service';
 
 @Component({
   selector: 'app-characters-section',
   template: `
-    <section class="flex flex-row flex-wrap justify-center gap-6 w-full max-w-full px-6">
+    <section
+      class="flex flex-row flex-wrap justify-center gap-6 w-full max-w-full px-6"
+    >
       <hr class="border-gray-100 opacity-50 w-full" />
       <p class="text-base text-center w-full text-gray-200 font-normal">
-        {{ characters.length }} Resultados (Página 1)
+        {{ characters[characters.length -1]?.id }} / {{ total }} Resultados (Página 1)
       </p>
       <app-character-card
         *ngFor="let character of characters"
@@ -24,10 +28,19 @@ import { CharacterService } from 'src/app/services/character.service';
 })
 export class CharactersSection implements OnInit {
   constructor(private service: CharacterService) {}
-  characters: CharacterDto[] = this.service.getCharacters();
+
+  characters: CharacterDto[] = [];
+  total: number = 0;
+
   ngOnInit(): void {
-    this.service.characters$.subscribe((characters) => {
-      this.characters = characters;
-    });
+    this.service
+      .getCharactersByPage()
+      .pipe(
+        tap((res: CharacterResponseDto) => {
+          this.total = res.info.count
+          this.characters = res.results;
+        })
+      )
+      .subscribe();
   }
 }

@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CharacterDto } from '../model/character/character.dto';
-import { apiConfig } from '../config/api.config';
-import { map, tap } from 'rxjs/operators';
-import { CharacterResponseDto } from '../model/character/character-response.dto';
+import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { apiConfig } from '../config/api.config';
+import { CharacterResponseDto } from '../model/character/character-response.dto';
+import { CharacterDto } from '../model/character/character.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -15,20 +15,15 @@ export class CharacterService {
 
   constructor(private http: HttpClient) {}
 
-  fetchCharacters() {
-    return this.http.get<CharacterResponseDto>(apiConfig.charactersUrl).pipe(
-      tap((response) => {
-        console.log(`Fetch All Characters!`);
-        console.log(response)
-        this.charactersSubject.next(response.results);
-      }),
-      map((character) => {
-        return character.results;
-      })
-    );
-  }
-
-  getCharacters() {
-    return this.charactersSubject.value;
+  getCharactersByPage(page: number = 1) {
+    return this.http
+      .get<CharacterResponseDto>(apiConfig.charactersUrl, { params: { page } })
+      .pipe(
+        tap((response) => {
+          console.log(`Fetch All Characters!`);
+          console.log(response);
+          this.charactersSubject.next(response.results);
+        })
+      );
   }
 }

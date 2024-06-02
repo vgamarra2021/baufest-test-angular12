@@ -1,16 +1,11 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { CharactersSection } from './sections/characters-section/characters-section';
+import { EpisodesSection } from './sections/episodes-section/episodes-section';
+import { LocationsSection } from './sections/locations-section/locations-section';
 
 export const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: HomeComponent
-  // },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-
-  { path: 'home', component: HomeComponent },
-
-  // { path: '', component: SidenavComponent, children: [
-
-  //     { path: 'home', component: HomeComponent },
+  { path: 'characters', component: CharactersSection },
+  { path: 'episodes', component: EpisodesSection },
+  { path: 'locations', component: LocationsSection },
+  { path: '**', redirectTo: '/characters', pathMatch: 'full' },
 ];

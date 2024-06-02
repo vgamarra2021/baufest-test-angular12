@@ -13,31 +13,23 @@ import { NavSection } from './sections/nav-section/nav-section';
 import { CharactersSection } from './sections/characters-section/characters-section';
 import { EpisodesSection } from './sections/episodes-section/episodes-section';
 import { LocationsSection } from './sections/locations-section/locations-section';
+import { routes } from './routes';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchBar,
-    SearchSection,
     SelectButtonComponent,
     CharacterCard,
     CardFeature,
-    NavSection,
     HeaderSection,
+    SearchSection,
+    NavSection,
     CharactersSection,
     EpisodesSection,
     LocationsSection,
   ],
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    RouterModule.forRoot([
-      { path: 'characters', component: CharactersSection },
-      { path: 'episodes', component: EpisodesSection },
-      { path: 'locations', component: LocationsSection },
-      { path: '**', redirectTo: '/characters', pathMatch: 'full' },
-    ]),
-  ],
+  imports: [HttpClientModule, BrowserModule, RouterModule.forRoot(routes)],
   providers: [],
   bootstrap: [AppComponent],
 })
