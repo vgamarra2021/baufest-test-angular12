@@ -1,4 +1,4 @@
-import { LocationDto } from '../location.dto';
+import { LocationDto } from '../location/location.dto';
 import { OriginDto } from './origin.dto';
 
 export interface CharacterDto {

@@ -1,0 +1,27 @@
+<section
+  class="flex flex-col flex-wrap justify-center items-center gap-6 w-full max-w-full px-6"
+>
+  <hr class="border-gray-100 opacity-50 w-full" />
+  <p class="text-base text-center w-full text-gray-200 font-normal">
+    {{ '1-20' }} / {{ total }} - (Página {{ page }})
+  </p>
+  <div
+    class="flex flex-row flex-wrap justify-center gap-6 w-full max-w-full px-6"
+  >
+    <app-episode-card
+      *ngFor="let episode of episodes"
+      [name]="episode.name"
+      [emisionDate]="episode.air_date"
+      [code]="episode.episode"
+    ></app-episode-card>
+  </div>
+
+  <ngb-pagination
+    [(page)]="page"
+    [pageSize]="pageSize"
+    [collectionSize]="total"
+    [maxSize]="5"
+    size="lg"
+    (pageChange)="onPageChange($event)"
+  ></ngb-pagination>
+</section>

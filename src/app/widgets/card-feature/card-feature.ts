@@ -19,5 +19,5 @@ import { Component, Input } from '@angular/core';
   ],
 })
 export class CardFeature {
-  @Input() value: string = '';
+  @Input() value: string | number = '';
 }
