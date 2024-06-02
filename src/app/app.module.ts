@@ -14,6 +14,7 @@ import { CharactersSection } from './sections/characters-section/characters-sect
 import { EpisodesSection } from './sections/episodes-section/episodes-section';
 import { LocationsSection } from './sections/locations-section/locations-section';
 import { routes } from './routes';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { routes } from './routes';
     EpisodesSection,
     LocationsSection,
   ],
-  imports: [HttpClientModule, BrowserModule, RouterModule.forRoot(routes)],
+  imports: [HttpClientModule, BrowserModule, RouterModule.forRoot(routes), NgbModule],
   providers: [],
   bootstrap: [AppComponent],
 })

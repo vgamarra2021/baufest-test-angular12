@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
     <a
       [routerLink]="value"
       routerLinkActive="active"
-      class="flex items-center justify-center rounded-lg py-2 px-4 cursor-pointer select-none transition-all duration-300 ease-in-out"
+      class="flex items-center justify-center rounded-lg py-2 px-4 cursor-pointer select-none transition-all duration-300 ease-in-out hover:no-underline hover:text-current"
     >
       <p class="text-xl drop-shadow-lg font-medium">
         {{ title }}
