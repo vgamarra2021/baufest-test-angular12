@@ -30,7 +30,7 @@ export class CharactersSection implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.pageSubject
       .pipe(
-        switchMap((page) => this.service.getItemsByPage(page)),
+        switchMap((page) => this.service.getItemsByPageWithEpisodie(page)),
         tap((res: ResponseDto) => {
           this.total = res.info.count;
           this.characters = res.results as CharacterDto[];
