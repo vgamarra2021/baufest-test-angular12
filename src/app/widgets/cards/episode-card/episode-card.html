@@ -2,10 +2,10 @@
   class="w-full max-w-xs overflow-hidden bg-white rounded-lg shadow-lg cursor-pointer"
 >
   <div class="flex items-center px-6 py-3 bg-gray-900">
-    <h1 class="text-lg font-semibold text-white">{{ name }}</h1>
+    <h1 class="text-lg font-semibold text-white">{{ episode.name }}</h1>
   </div>
   <div class="flex flex-col gap-3 px-6 py-4">
-    <app-card-feature [value]="emisionDate">
+    <app-card-feature [value]="episode.air_date ">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -21,7 +21,7 @@
         />
       </svg>
     </app-card-feature>
-    <app-card-feature [value]="code">
+    <app-card-feature [value]="episode.episode.toString()">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -35,6 +35,9 @@
       </svg>
     </app-card-feature>
 
-    <app-info-button title="Detalle"></app-info-button>
+    <app-episode-info-button
+      title="Detalle"
+      [episode]="episode"
+    ></app-episode-info-button>
   </div>
 </div>

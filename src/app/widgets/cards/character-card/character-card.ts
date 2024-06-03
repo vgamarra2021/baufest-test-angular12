@@ -12,9 +12,9 @@ export class CharacterCard implements OnInit {
   @Input() image: string = '';
   @Input() episodes: string[] = [];
   @Input() selectedEpisode: string = '';
-  
+
   ngOnInit(): void {
-    this.selectedEpisode = this.getRandomEpisode()
+    this.selectedEpisode = this.getRandomEpisode();
   }
 
   getRandomEpisode() {
@@ -22,7 +22,7 @@ export class CharacterCard implements OnInit {
     return this.episodes[randomIndex];
   }
 
-   getIdFromUrl(url: string): string | null {
+  getIdFromUrl(url: string): string | null {
     const regex = /\/(\d+)(?:\/)?$/;
     const match = url.match(regex);
     return match ? match[1] : null;

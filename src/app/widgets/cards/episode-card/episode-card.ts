@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { EpisodeDto } from 'src/app/model/episode/episode.dto';
 
 @Component({
   selector: 'app-episode-card',
@@ -11,12 +12,6 @@ import { Component, Input, OnInit } from '@angular/core';
     `,
   ],
 })
-export class EpisodeCard implements OnInit {
-  @Input() name: string = '';
-  @Input() emisionDate: string = '';
-  @Input() code: string = '';
-
-  constructor() {}
-
-  ngOnInit(): void {}
+export class EpisodeCard {
+  @Input() episode!: EpisodeDto;
 }

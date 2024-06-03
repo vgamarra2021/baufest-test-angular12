@@ -1,12 +1,7 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { NavigationEnd, Router } from '@angular/router';
-import { Subject } from 'rxjs';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  takeUntil
-} from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
@@ -38,9 +33,8 @@ import { SearchService } from 'src/app/services/search.service';
   `,
   styles: [],
 })
-export class SearchBar implements OnInit, OnDestroy {
+export class SearchBar {
   inputText = new FormControl('');
-  private readonly destroy$ = new Subject();
 
   constructor(private router: Router, private searchService: SearchService) {
     this.inputText.valueChanges
@@ -48,18 +42,5 @@ export class SearchBar implements OnInit, OnDestroy {
       .subscribe((searchValue) => {
         this.searchService.onChangeSearchText(searchValue, this.router.url);
       });
-  }
-
-  ngOnInit() {
-    this.router.events.pipe(takeUntil(this.destroy$)).subscribe((event) => {
-      if (event instanceof NavigationEnd && this.inputText.value !== '') {
-        this.inputText.setValue('');
-      }
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 }

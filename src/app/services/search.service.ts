@@ -13,7 +13,10 @@ export class SearchService {
     private episodeService: EpisodeService
   ) {}
 
+  searchTextValue: string = '';
+
   onChangeSearchText(searchValue: string, route: string) {
+    this.searchTextValue = searchValue
     switch (route) {
       case '/characters':
         this.characterService.onChangeSearchValue(searchValue);

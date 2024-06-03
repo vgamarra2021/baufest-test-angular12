@@ -1,10 +1,10 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { BehaviorSubject, EMPTY, Subject } from 'rxjs';
-import { catchError, switchMap, takeUntil, tap } from 'rxjs/operators';
+import { EMPTY, Subject } from 'rxjs';
+import { catchError, takeUntil, tap } from 'rxjs/operators';
 import { CharacterDto } from 'src/app/model/character/character.dto';
 import { ResponseDto } from 'src/app/model/common/response.dto';
 import { CharacterService } from 'src/app/services/character.service';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-characters-section',
@@ -12,14 +12,16 @@ import { CharacterService } from 'src/app/services/character.service';
   styles: [],
 })
 export class CharactersSection implements OnInit, OnDestroy {
-  constructor(private service: CharacterService) {}
+  constructor(
+    private service: CharacterService,
+    private searchService: SearchService
+  ) {}
 
   characters: CharacterDto[] = [];
   total: number = 0;
   page: number = 1;
   pageSize: number = 20;
 
-  private pageSubject = new BehaviorSubject<number>(this.page);
   private readonly destroy$ = new Subject();
 
   ngOnDestroy(): void {
@@ -28,38 +30,37 @@ export class CharactersSection implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.pageSubject
-      .pipe(
-        switchMap((page) => this.service.getItemsByPageWithEpisodie(page)),
-        tap((res: ResponseDto) => {
-          this.total = res.info.count;
-          this.characters = res.results as CharacterDto[];
-        })
-      )
-      .subscribe();
-
+    this.updateCards();
     this.service.subject
       .pipe(
-        switchMap((searchValue) =>
-          this.service.getItemsByName(searchValue).pipe(
-            catchError((error: HttpErrorResponse) => {
-              console.log(`${error.message}`);
-              this.total = 0;
-              this.characters = [];
-              return EMPTY;
-            })
-          )
-        ),
-        tap((res: ResponseDto | undefined) => {
-          this.total = res?.info.count || 0;
-          this.characters = (res?.results as CharacterDto[]) || [];
+        tap((response) => {
+          console.log(response);
+          this.updateCards();
         }),
         takeUntil(this.destroy$)
       )
       .subscribe();
   }
 
-  onPageChange(page: number): void {
-    this.pageSubject.next(page);
+  onPageChange(): void {
+    this.updateCards();
+  }
+
+  updateCards() {
+    const searchValue = this.searchService.searchTextValue;
+    this.service
+      .getItemsByNameAndPage(searchValue, this.page)
+      .pipe(
+        catchError(() => {
+          this.total = 0;
+          this.characters = [];
+          return EMPTY;
+        }),
+        tap((res: ResponseDto | undefined) => {
+          this.total = res?.info.count || 0;
+          this.characters = (res?.results as CharacterDto[]) || [];
+        })
+      )
+      .subscribe();
   }
 }

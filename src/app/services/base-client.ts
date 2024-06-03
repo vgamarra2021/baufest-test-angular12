@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { ResponseDto } from '../model/common/response.dto';
 
 export abstract class BaseClient {
@@ -9,20 +8,17 @@ export abstract class BaseClient {
   subject = new Subject<string | undefined>();
 
   abstract baseUrl: string;
-  getItemsByPage(page: number = 1) {
-    return this.http.get<ResponseDto>(this.baseUrl, { params: { page } }).pipe(
-      tap((response) => {
-        console.log(response);
-      })
-    );
-  }  
-  
-  getItemsByName(name: string = '') {
-    return this.http.get<ResponseDto>(this.baseUrl, { params: { name } }).pipe(
-      tap((response) => {
-        console.log(response);
-      })
-    );
+
+  getItemsByNameAndPage(name: string = '', page: number = 1) {
+    return this.http.get<ResponseDto>(this.baseUrl, { params: { name, page } });
+  }
+
+  getItemById<T>(id: number) {
+    return this.http.get<T>(`${this.baseUrl}/${id}`);
+  }
+
+  getMultiplesItemsByIds<T>(ids: number[]) {
+    return this.http.get<T>(`${this.baseUrl}/${ids.join(',')}`);
   }
 
   onChangeSearchValue(searchValue: string) {
