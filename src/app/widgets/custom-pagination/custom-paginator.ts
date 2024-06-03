@@ -8,7 +8,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
       [pageSize]="pageSize"
       [collectionSize]="collectionSize"
       [maxSize]="maxSize"
-      size="lg"
       (pageChange)="onPageChange($event)"
     ></ngb-pagination>
   `,

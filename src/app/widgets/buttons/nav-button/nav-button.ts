@@ -6,9 +6,9 @@ import { Component, Input } from '@angular/core';
     <a
       [routerLink]="value"
       routerLinkActive="active"
-      class="flex items-center justify-center rounded-lg py-2 px-4 cursor-pointer select-none transition-all duration-300 ease-in-out hover:no-underline hover:text-current"
+      class="flex items-center justify-center rounded-lg py-2 px-3 sm:px-4 cursor-pointer select-none transition-all duration-300 ease-in-out hover:no-underline hover:text-current"
     >
-      <p class="text-xl drop-shadow-lg font-medium">
+      <p class="text-md sm:text-xl drop-shadow-lg font-medium">
         {{ title }}
       </p>
     </a>

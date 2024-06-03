@@ -8,11 +8,11 @@ import { SearchService } from 'src/app/services/search.service';
   selector: 'app-search-bar',
   template: `
     <div
-      class="flex flex-row items-center w-full bg-white px-6 py-3 rounded-xl gap-2"
+      class="flex flex-row items-center w-full bg-white px-4 sm:px-6 py-2 rounded-xl gap-2"
     >
       <input
         type="text"
-        class="w-full text-2xl focus-visible: outline-none"
+        class="w-full text-lg sm:text-2xl focus-visible: outline-none"
         [formControl]="inputText"
       />
       <svg

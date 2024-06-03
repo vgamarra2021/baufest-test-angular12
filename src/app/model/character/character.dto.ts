@@ -15,4 +15,5 @@ export interface CharacterDto {
   url: string;
   created: string;
   episodeName?: string;
+  episodeId?: number;
 }

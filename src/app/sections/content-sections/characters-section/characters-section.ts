@@ -34,7 +34,6 @@ export class CharactersSection implements OnInit, OnDestroy {
     this.service.subject
       .pipe(
         tap((response) => {
-          console.log(response);
           this.updateCards();
         }),
         takeUntil(this.destroy$)
@@ -49,7 +48,7 @@ export class CharactersSection implements OnInit, OnDestroy {
   updateCards() {
     const searchValue = this.searchService.searchTextValue;
     this.service
-      .getItemsByNameAndPage(searchValue, this.page)
+      .getCharactersWithEpisodies(searchValue, this.page)
       .pipe(
         catchError(() => {
           this.total = 0;
