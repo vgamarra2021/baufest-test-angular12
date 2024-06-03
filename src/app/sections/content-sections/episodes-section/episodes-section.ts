@@ -31,7 +31,7 @@ export class EpisodesSection implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.updateCards();
-    this.service.subject
+    this.service.subject$
       .pipe(
         tap((response) => {
           this.updateCards();

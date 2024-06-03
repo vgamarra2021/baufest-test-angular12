@@ -1,0 +1,62 @@
+<ng-template #content let-modal>
+  <div class="modal-header bg-gray-900 text-white">
+    <h4 class="modal-title font-medium tracking-wide" id="modal-basic-title">
+      Resultado de Comparación
+    </h4>
+  </div>
+  <div class="modal-body">
+    <div class="flex flex-col w-full gap-1">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col" *ngFor="let character of characters">
+              <img [src]="character.image" alt="Character Image" />
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Nombre</th>
+            <td *ngFor="let character of characters">{{ character.name }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Género</th>
+            <td *ngFor="let character of characters">{{ character.gender }}</td>
+          </tr>
+          <tr>
+            <th scope="row">Ubicación</th>
+            <td *ngFor="let character of characters">
+              {{ character.location.name }}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Especie</th>
+            <td *ngFor="let character of characters">
+              {{ character.species }}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Estado</th>
+            <td *ngFor="let character of characters">{{ character.status }}</td>
+          </tr>
+          <tr>
+            <th scope="row"># de Episodios en Común</th>
+            <td *ngFor="let character of characters">
+              <div *ngFor="let item of countCommonEpisodies(character)">
+                <p>
+                  Con <strong>{{item.name}}</strong> -
+                  <strong>{{item.count}}</strong> Episodios
+                </p>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <app-single-button (click)="modal.close()" title="Aceptar">
+    </app-single-button>
+  </div>
+</ng-template>

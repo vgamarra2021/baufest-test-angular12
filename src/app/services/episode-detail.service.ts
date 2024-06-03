@@ -6,7 +6,7 @@ import { EpisodeDto } from '../model/episode/episode.dto';
 @Injectable({
   providedIn: 'root',
 })
-export class ModalService {
+export class EpisodeDetailService {
   constructor() {}
 
   modal$ = new Subject<{ characters: CharacterDto[]; episode: EpisodeDto }>();

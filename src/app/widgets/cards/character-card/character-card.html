@@ -3,14 +3,14 @@
 >
   <img
     class="object-cover object-center w-full h-56"
-    src="{{ image }}"
+    src="{{ character.image }}"
     alt="Card Image"
   />
   <div class="flex items-center px-6 py-3 bg-gray-900">
-    <h1 class="text-lg font-semibold text-white">{{ name }}</h1>
+    <h1 class="text-lg font-semibold text-white">{{ character.name }}</h1>
   </div>
   <div class="flex flex-col gap-3 px-6 py-4">
-    <app-card-feature [value]="gender">
+    <app-card-feature [value]="character.gender">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -24,7 +24,7 @@
         />
       </svg>
     </app-card-feature>
-    <app-card-feature [value]="location">
+    <app-card-feature [value]="character.location.name">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
@@ -50,6 +50,10 @@
         />
       </svg>
     </app-card-feature>
-    <app-compare-button title="Comparar"></app-compare-button>
+    <app-compare-button
+      title="Comparar"
+      class="w-full"
+      [character]="character"
+    ></app-compare-button>
   </div>
 </div>

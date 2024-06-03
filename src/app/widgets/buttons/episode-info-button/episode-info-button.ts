@@ -5,7 +5,7 @@ import { CharacterDto } from 'src/app/model/character/character.dto';
 import { EpisodeDto } from 'src/app/model/episode/episode.dto';
 import { CharacterService } from 'src/app/services/character.service';
 import { EpisodeService } from 'src/app/services/episode.service';
-import { ModalService } from 'src/app/services/modal.service';
+import { EpisodeDetailService } from 'src/app/services/episode-detail.service';
 import { UrlUtil } from 'src/app/utils/url-util';
 
 @Component({
@@ -26,7 +26,7 @@ export class EpisodeInfoButton {
   constructor(
     private episodeService: EpisodeService,
     private characterService: CharacterService,
-    private modalService: ModalService
+    private episodeDetailService: EpisodeDetailService
   ) {}
 
   showDetails() {
@@ -47,7 +47,7 @@ export class EpisodeInfoButton {
         })
       )
       .subscribe((response) => {
-        this.modalService.modal$.next(response);
+        this.episodeDetailService.modal$.next(response);
       });
   }
 }

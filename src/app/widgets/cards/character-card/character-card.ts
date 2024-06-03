@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { CharacterDto } from 'src/app/model/character/character.dto';
 
 @Component({
   selector: 'app-character-card',
@@ -12,10 +13,6 @@ import { Component, Input, OnInit } from '@angular/core';
   ],
 })
 export class CharacterCard {
-  @Input() name: string = '';
-  @Input() gender: string = '';
-  @Input() location: string = '';
-  @Input() image: string = '';
-  @Input() episodes: string[] = [];
+  @Input() character!: CharacterDto;
   @Input() selectedEpisode: string = '';
 }

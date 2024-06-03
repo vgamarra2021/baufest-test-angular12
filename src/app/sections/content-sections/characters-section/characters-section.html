@@ -1,3 +1,4 @@
+<app-comparison-modal></app-comparison-modal>
 <section
   class="flex flex-col flex-wrap justify-center items-center gap-6 w-full max-w-full px-6"
 >
@@ -10,11 +11,7 @@
   >
     <app-character-card
       *ngFor="let character of characters"
-      [name]="character.name"
-      [image]="character.image"
-      [gender]="character.gender"
-      [location]="character.location.name"
-      [episodes]="character.episode"
+      [character]="character"
       [selectedEpisode]="character.episodeName || ''"
     ></app-character-card>
   </div>
@@ -25,4 +22,7 @@
     [collectionSize]="total"
     (pageChange)="onPageChange()"
   ></app-custom-paginator>
+
+  <app-compare-bar></app-compare-bar>
+  <div class="h-12"></div>
 </section>

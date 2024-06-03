@@ -5,7 +5,7 @@ import { ResponseDto } from '../model/common/response.dto';
 export abstract class BaseClient {
   constructor(protected http: HttpClient) {}
 
-  subject = new Subject<string | undefined>();
+  subject$ = new Subject<string | undefined>();
 
   abstract baseUrl: string;
 
@@ -22,6 +22,6 @@ export abstract class BaseClient {
   }
 
   onChangeSearchValue(searchValue: string) {
-    this.subject.next(searchValue);
+    this.subject$.next(searchValue);
   }
 }

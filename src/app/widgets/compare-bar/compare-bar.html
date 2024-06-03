@@ -1,0 +1,42 @@
+<div
+  class="fixed bottom-0 left-0 w-full h-28 py-2 pointer-events-none text-white flex items-center justify-center z-10 transition-all ease-in-out duration-200"
+>
+  <div
+    class="flex flex-row justify-center items-center pointer-events-auto rounded-md h-full p-3 max-w-2xl bg-white shadow-md gap-3 opacity-50 hover:opacity-100"
+  >
+    <div class="flex flex-row gap-3">
+      <div
+        *ngFor="let character of characters"
+        class="flex items-center h-16 w-16 bg-green-500 rounded-sm transform hover:scale-110 transition-all ease-in-out duration-200 cursor-pointer"
+      >
+        <img [src]="character.image" alt="" />
+      </div>
+    </div>
+    <button
+      (click)="showComparison()
+    "
+      class="flex items-center justify-center gap-1 px-3 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-400 focus:ring-opacity-80 w-full"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="icon h-5 w-5 icon-tabler icons-tabler-outline icon-tabler-arrows-diff"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M11 16h10" />
+        <path d="M11 16l4 4" />
+        <path d="M11 16l4 -4" />
+        <path d="M13 8h-10" />
+        <path d="M13 8l-4 4" />
+        <path d="M13 8l-4 -4" />
+      </svg>
+
+      <p>Compara!</p>
+    </button>
+  </div>
+</div>
