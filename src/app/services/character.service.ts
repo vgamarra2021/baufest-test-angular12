@@ -7,13 +7,13 @@ import { CharacterDto } from '../model/character/character.dto';
 import { ResponseDto } from '../model/common/response.dto';
 import { EpisodeDto } from '../model/episode/episode.dto';
 import { UrlUtil } from '../utils/url-util';
-import { BaseClient } from './base-client';
+import { BaseService } from './base.service';
 import { EpisodeService } from './episode.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CharacterService extends BaseClient {
+export class CharacterService extends BaseService {
   baseUrl: string = apiConfig.charactersUrl;
 
   constructor(
@@ -51,7 +51,7 @@ export class CharacterService extends BaseClient {
     });
   }
 
-  private addEpisodeNames(episodes: EpisodeDto[], response: any) {
+  private addEpisodeNames(episodes: EpisodeDto[], response: ResponseDto) {
     response.results = (response.results as CharacterDto[]).map((character) => {
       character.episodeName = episodes.find(
         (episode) => episode.id === character.episodeId!

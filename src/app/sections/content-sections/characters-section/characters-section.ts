@@ -1,44 +1,51 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { EMPTY, Subject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { EMPTY } from 'rxjs';
 import { catchError, takeUntil, tap } from 'rxjs/operators';
 import { CharacterDto } from 'src/app/model/character/character.dto';
 import { ResponseDto } from 'src/app/model/common/response.dto';
 import { CharacterService } from 'src/app/services/character.service';
+import { CompareCharactersService } from 'src/app/services/compare-characters.service';
 import { SearchService } from 'src/app/services/search.service';
+import { BaseComponent } from 'src/app/shared/base-component';
 
 @Component({
   selector: 'app-characters-section',
   templateUrl: './characters-section.html',
   styles: [],
 })
-export class CharactersSection implements OnInit, OnDestroy {
+export class CharactersSection extends BaseComponent implements OnInit {
   constructor(
     private service: CharacterService,
-    private searchService: SearchService
-  ) {}
+    private searchService: SearchService,
+    private compareCharactersService: CompareCharactersService
+  ) {
+    super();
+  }
 
   characters: CharacterDto[] = [];
   total: number = 0;
   page: number = 1;
   pageSize: number = 20;
-
-  private readonly destroy$ = new Subject();
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
+  compareCharactersVisible: boolean = false;
 
   ngOnInit(): void {
     this.updateCards();
     this.service.subject$
       .pipe(
-        tap((response) => {
+        tap(() => {
           this.updateCards();
         }),
         takeUntil(this.destroy$)
       )
       .subscribe();
+
+    this.compareCharactersService.compareList$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((characters) => {
+        characters.length === 0
+          ? (this.compareCharactersVisible = false)
+          : (this.compareCharactersVisible = true);
+      });
   }
 
   onPageChange(): void {

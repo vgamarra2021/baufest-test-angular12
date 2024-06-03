@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { ResponseDto } from '../model/common/response.dto';
 
-export abstract class BaseClient {
+export abstract class BaseService {
   constructor(protected http: HttpClient) {}
 
   subject$ = new Subject<string | undefined>();

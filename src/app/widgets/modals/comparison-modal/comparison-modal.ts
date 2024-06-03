@@ -1,9 +1,9 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CharacterDto } from 'src/app/model/character/character.dto';
 import { CompareCharactersService } from 'src/app/services/compare-characters.service';
+import { BaseComponent } from 'src/app/shared/base-component';
 
 @Component({
   selector: 'app-comparison-modal',
@@ -16,13 +16,14 @@ import { CompareCharactersService } from 'src/app/services/compare-characters.se
     `,
   ],
 })
-export class ComparisonModal implements OnInit {
+export class ComparisonModal extends BaseComponent implements OnInit {
   constructor(
     private bootstrapModalService: NgbModal,
     private compareCharactersService: CompareCharactersService
-  ) {}
+  ) {
+    super();
+  }
 
-  private readonly destroy$ = new Subject();
   @ViewChild('content') modalContent!: TemplateRef<any>;
   characters: CharacterDto[] = [];
 
@@ -33,11 +34,6 @@ export class ComparisonModal implements OnInit {
         this.characters = res;
         this.open();
       });
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   open() {

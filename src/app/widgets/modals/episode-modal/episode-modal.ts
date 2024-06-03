@@ -1,32 +1,33 @@
 import {
   Component,
-  OnDestroy,
+
   OnInit,
   TemplateRef,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CharacterDto } from 'src/app/model/character/character.dto';
 import { EpisodeDto } from 'src/app/model/episode/episode.dto';
 import { EpisodeDetailService } from 'src/app/services/episode-detail.service';
+import { BaseComponent } from 'src/app/shared/base-component';
 
 @Component({
   selector: 'app-episode-modal',
   templateUrl: './episode-modal.html',
   styles: [],
 })
-export class EpisodeModal implements OnInit, OnDestroy {
+export class EpisodeModal extends BaseComponent implements OnInit {
   constructor(
     private bootstrapModalService: NgbModal,
     private episodeDetailService: EpisodeDetailService
-  ) {}
+  ) {
+    super();
+  }
 
   episode: EpisodeDto | null = null;
   characters: CharacterDto[] = [];
   @ViewChild('content') modalContent!: TemplateRef<any>;
-  private readonly destroy$ = new Subject();
 
   ngOnInit(): void {
     this.episodeDetailService.modal$
@@ -36,11 +37,6 @@ export class EpisodeModal implements OnInit, OnDestroy {
         this.characters = res.characters;
         this.open();
       });
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   open() {
