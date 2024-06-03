@@ -34,7 +34,6 @@ export class LocationsSection implements OnInit, OnDestroy {
     this.service.subject
       .pipe(
         tap((response) => {
-          console.log(response);
           this.updateCards();
         }),
         takeUntil(this.destroy$)

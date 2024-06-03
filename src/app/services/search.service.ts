@@ -16,6 +16,7 @@ export class SearchService {
   searchTextValue: string = '';
 
   onChangeSearchText(searchValue: string, route: string) {
+    console.log(`Search Value: ${searchValue}`)
     this.searchTextValue = searchValue
     switch (route) {
       case '/characters':
